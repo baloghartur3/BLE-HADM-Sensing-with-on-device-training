@@ -1,0 +1,72 @@
+# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
+project_name: ml_mcu_ble_hadm
+label: ml_mcu_ble_hadm
+description: |
+  ABR initiator for Bluetooth. The example connects to an ABR reflector and starts distance measurement. Results are printed on the display of the WSTK.
+category: Bluetooth Examples
+package: Bluetooth
+quality: alpha
+readme:
+- {path: readme.md}
+source:
+- {path: main.c}
+- {path: app.c}
+- {path: abr_ui.c}
+- {path: evaluate.c}
+- {path: ml_model.c}
+- {path: misc.c}
+tag: [prebuilt_demo, 'hardware:rf:band:2400']
+include:
+- path: ''
+  file_list:
+  - {path: app.h}
+  - {path: abr_ui.h}
+  - {path: abr_ui_types.h}
+  - {path: evaluate.h}
+  - {path: ml_model.h}
+  - {path: misc.h}
+sdk: {id: gecko_sdk, version: 4.3.0}
+toolchain_settings: []
+component:
+- {id: abr_initiator}
+- instance: [btn0]
+  id: simple_button
+- {id: in_place_ota_dfu}
+- {id: bluetooth_feature_sm}
+- {id: mpu}
+- {id: iostream_recommended_stream}
+- {id: bluetooth_stack}
+- {id: brd4002a}
+- {id: dmd_memlcd}
+- {id: EFR32MG24B210F1536IM48}
+- {id: glib}
+- {id: app_log}
+- {id: bluetooth_feature_connection}
+- {id: brd4198a}
+- {id: bluetooth_feature_system}
+- {id: bluetooth_feature_scanner}
+- {id: toolchain_gcc}
+- {id: component_catalog}
+- {id: app_assert}
+- {id: ls013b7dh03}
+other_file:
+- {path: create_bl_files.bat}
+- {path: create_bl_files.sh}
+library:
+- {system: stdc++}
+config_file:
+- {path: config/initiator_config.h}
+configuration:
+- {name: SL_STACK_SIZE, value: '10000'}
+- {name: SL_HEAP_SIZE, value: '10000'}
+- condition: [psa_crypto]
+  name: SL_PSA_KEY_USER_SLOT_COUNT
+  value: '0'
+- {name: SL_DEVICE_INIT_HFXO_FREQ, value: '40000000'}
+- {name: SL_BOARD_ENABLE_DISPLAY, value: '1'}
+- {name: SL_BOARD_ENABLE_VCOM, value: '1'}
+ui_hints:
+  highlight:
+  - {path: readme.md, focus: true}
+  - {path: config/btconf/gatt_configuration.btconf}
+
