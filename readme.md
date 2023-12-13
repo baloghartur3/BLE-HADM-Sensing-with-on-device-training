@@ -1,4 +1,4 @@
-# BLE HADM Sensing with on-the-edge training
+# BLE HADM Sensing with on-device training
 
 This project demonstrates the capabilities of wireless sensing using the IQ samples from the BLE 
 
