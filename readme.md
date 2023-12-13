@@ -21,19 +21,19 @@ extern int done;
 ```
 These changes should start after line 675
 ```c
-    meas->rtp_data.rtl_input.q_samples_d2 = meas->rtp_data.reflector_q_samples;
-    //MODIFICATION START
-    int j=0;
-    for(int i=0; i<40;i++){
-        initiator_i[j]=meas->rtp_data.initiator_i_samples[i];
-        initiator_q[j]=meas->rtp_data.initiator_q_samples[i];
-        reflector_i[j]=meas->rtp_data.reflector_i_samples[i];
-        reflector_q[j]=meas->rtp_data.reflector_q_samples[i];
-        if (i!=0 && i!=12 && i!=39)
-          j++;
-    }
-    done=1;
-    //MODIFICATION END
+meas->rtp_data.rtl_input.q_samples_d2 = meas->rtp_data.reflector_q_samples;
+//MODIFICATION START
+int j=0;
+for(int i=0; i<40;i++){
+    initiator_i[j]=meas->rtp_data.initiator_i_samples[i];
+    initiator_q[j]=meas->rtp_data.initiator_q_samples[i];
+    reflector_i[j]=meas->rtp_data.reflector_i_samples[i];
+    reflector_q[j]=meas->rtp_data.reflector_q_samples[i];
+    if (i!=0 && i!=12 && i!=39)
+      j++;
+}
+done=1;
+//MODIFICATION END
 ```
 
 ### Building and Flashing
