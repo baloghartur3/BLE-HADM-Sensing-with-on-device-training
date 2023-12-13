@@ -64,7 +64,8 @@ Binary can be found at: build/debug/ml_mcu_ble_hadm.s37
 ### Running
 After startup it will scan for a device running the "Soc - ABR Reflector" sample application. When found, the initiator will create a connection between them and will start the data collection for the sensing task.
 
-
+## Training without collecting
+I have provided an additional dataset to this repo to eliminate the need for data collection in the form of a .h file, which contains samples of a person being present or absent in a certain test area. This way there is no need for 2 devices, one can experiment with this dataset and try various models.
 
 ## Troubleshooting
 
