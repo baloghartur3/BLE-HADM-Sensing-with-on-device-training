@@ -1,20 +1,41 @@
-# BLE HADM Sensing with on-the-edge training
+# BLE HADM Sensing with on-device training
 
-This project demonstrates the capabilities of wireless sensing using the IQ samples from the BLE 
+This project demonstrates the capabilities of wireless sensing using the IQ samples from BLE.
+
+The demo is based on the [ML_MCU implementation](https://github.com/bharathsudharsan/ML-MCU/tree/master) of Bharath Sudharsan 
 
 ## Usage
 
 ### IMPORTANT NOTE
 However one may build this app one slight modification to the sdk is necessary to run this app successfully:
+The IQ samples have to be retrieved somehow from the HADM stack. Currently there is no API to support this so here is a suggested working solution:
 
-The following variables must be defined in the gecko_sdk_`<some version number>`\app\bluetooth\common\abr_cs_parser\abr_cs_parser.c
+The following changes must be made in the gecko_sdk_`some_version_number`\app\bluetooth\common\abr_cs_parser\abr_cs_parser.c
 
-```sh
+These variables must defined: 
+
+```c
 extern float initiator_i[];
 extern float initiator_q[];
 extern float reflector_i[];
 extern float reflector_q[];
 extern int done;
+```
+These changes should start after line 675
+```c
+meas->rtp_data.rtl_input.q_samples_d2 = meas->rtp_data.reflector_q_samples;
+//MODIFICATION START
+int j=0;
+for(int i=0; i<40;i++){
+    initiator_i[j]=meas->rtp_data.initiator_i_samples[i];
+    initiator_q[j]=meas->rtp_data.initiator_q_samples[i];
+    reflector_i[j]=meas->rtp_data.reflector_i_samples[i];
+    reflector_q[j]=meas->rtp_data.reflector_q_samples[i];
+    if (i!=0 && i!=12 && i!=39)
+      j++;
+}
+done=1;
+//MODIFICATION END
 ```
 
 ### Building and Flashing
@@ -45,7 +66,8 @@ Binary can be found at: build/debug/ml_mcu_ble_hadm.s37
 ### Running
 After startup it will scan for a device running the "Soc - ABR Reflector" sample application. When found, the initiator will create a connection between them and will start the data collection for the sensing task.
 
-
+## Training without collecting
+I have provided an additional dataset to this repo to eliminate the need for data collection in the form of a .h file, which contains samples of a person being present or absent in a certain test area. This way there is no need for 2 devices, one can experiment with this dataset and try various models.
 
 ## Troubleshooting
 
