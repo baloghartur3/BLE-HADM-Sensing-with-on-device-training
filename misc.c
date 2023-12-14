@@ -35,3 +35,10 @@ void shuffle(int *array, size_t n)
         }
     }
 }
+
+float dot(float *x, float *w,int size) {
+            float sum = 0;
+            for (int i = 0; i < size; i++)
+                sum += x[i] * w[i];
+            return sum;
+}

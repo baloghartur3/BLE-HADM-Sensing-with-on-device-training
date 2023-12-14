@@ -66,13 +66,6 @@ void softmax(float* outputs, int size){
   }
 }
 
-float dot(float *x, float *w,int size) {
-            float sum = 0;
-            for (int i = 0; i < size; i++)
-                sum += x[i] * w[i];
-            return sum;
-}
-
 void init_SGD(bool norm_alpha, float momentum, float alpha)
 {
   model_alpha=alpha;

@@ -25,6 +25,7 @@ typedef struct {
 float calc_second_norm(float x, float y);
 hadm_struct compl_multiplication(float i1, float q1,float i2,float q2);
 void shuffle(int *array, size_t n);
+float dot(float *x, float *w,int size);
 
 
 #endif /* MISC_H_ */
