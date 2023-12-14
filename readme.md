@@ -1,6 +1,8 @@
 # BLE HADM Sensing with on-device training
 
-This project demonstrates the capabilities of wireless sensing using the IQ samples from the BLE 
+This project demonstrates the capabilities of wireless sensing using the IQ samples from BLE.
+
+The demo is based on the [ML_MCU implementation](https://github.com/bharathsudharsan/ML-MCU/tree/master) of Bharath Sudharsan 
 
 ## Usage
 
