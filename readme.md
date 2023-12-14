@@ -8,7 +8,7 @@ This project demonstrates the capabilities of wireless sensing using the IQ samp
 However one may build this app one slight modification to the sdk is necessary to run this app successfully:
 The IQ samples have to be retrieved somehow from the HADM stack. Currently there is no API to support this so here is a suggested working solution:
 
-The following changes must be made in the gecko_sdk_`<some version number>`\app\bluetooth\common\abr_cs_parser\abr_cs_parser.c
+The following changes must be made in the gecko_sdk_`some_version_number`\app\bluetooth\common\abr_cs_parser\abr_cs_parser.c
 
 These variables must defined: 
 
